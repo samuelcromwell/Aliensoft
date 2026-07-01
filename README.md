@@ -26,6 +26,8 @@ Laravel 10 API slice for managing ticket tiers on an events platform.
 
 ## Setup
 
+Required PHP extensions for the test suite include `pdo_sqlite`. The project also includes a guarded `mb_strimwidth` fallback for stripped-down PHP CLI builds that do not have `mbstring`.
+
 ```bash
 composer install
 cp .env.example .env
