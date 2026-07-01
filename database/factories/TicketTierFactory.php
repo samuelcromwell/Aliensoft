@@ -3,10 +3,11 @@
 namespace Database\Factories;
 
 use App\Models\Event;
+use App\Models\TicketTier;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\TicketTier>
+ * @extends Factory<TicketTier>
  */
 class TicketTierFactory extends Factory
 {

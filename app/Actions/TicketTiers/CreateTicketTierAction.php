@@ -10,7 +10,7 @@ class CreateTicketTierAction
 {
     public function execute(CreateTicketTierData $data): TicketTier
     {
-        return TicketTier::create([
+        $ticketTier = TicketTier::create([
             'event_id' => $data->event_id,
             'name' => $data->name,
             'price' => $data->price,
@@ -18,6 +18,8 @@ class CreateTicketTierAction
             'sales_channels' => $this->optionalValue($data->sales_channels),
             'is_active' => $this->optionalValue($data->is_active, true),
         ]);
+
+        return $ticketTier->refresh();
     }
 
     private function optionalValue(mixed $value, mixed $default = null): mixed

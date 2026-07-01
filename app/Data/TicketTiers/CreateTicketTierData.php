@@ -16,8 +16,7 @@ class CreateTicketTierData extends Data
         public int $quantity,
         public Optional|array|null $sales_channels,
         public Optional|bool $is_active,
-    ) {
-    }
+    ) {}
 
     public static function rules(ValidationContext $context): array
     {
