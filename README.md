@@ -1,127 +1,66 @@
-# Backend Developer Intern — Take-Home Assessment
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-**Stack:** Laravel 10 · PHP 8.1 · Pest · `spatie/laravel-data` v4 · `spatie/laravel-query-builder` v5.8 · `spatie/laravel-permission` v6
+<p align="center">
+<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-**Time budget:** ~2–3 focused hours. We are evaluating *whether you can follow our conventions cleanly*, not how much you build. A small, tidy, idiomatic slice beats a large, messy one.
+## About Laravel
 
-**Delivery Due:** 01/07/2026 at 14:00 HRS (EAT)
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-> Build this in a **fresh Laravel project** of your own. Set up the listed packages yourself. The point is to see whether you can structure a clean CRUD feature out of the patterns described below.
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
----
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## 1. The scenario
+## Learning Laravel
 
-You are building a small slice of an **events platform**. Each *event* sells *tickets* in named **ticket tiers** (e.g. "Early Bird", "VIP", "General Admission").
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You will build the **CRUD API slice** for ticket tiers: model, migration, the full CRUD endpoint, plus one custom `publish` action. No frontend, no payments, no PDF — just a clean, idiomatic API resource.
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-The whole point is the *structure*: we want to see you wire a Laravel Data class, an Action class, a Query Builder index, an API Resource, and a policy into one coherent feature, following the patterns a tidy Laravel dev would.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
----
+## Laravel Sponsors
 
-## 2. The concepts you must demonstrate
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-These are the patterns we live by. Your submission is judged on getting each one right and making them work *together*.
+### Premium Partners
 
-| Concept | What we expect to see |
-| --- | --- |
-| **Laravel Data class** (input + validation) | A `CreateTicketTierData` and `UpdateTicketTierData`. Validation declared in a `rules(ValidationContext $context)` method. Use `Optional` for non-required fields. |
-| **Action class** | One `Create`, one `Update`, one `Delete`, and one `Publish` action. Each has exactly **one public method `execute(...)`**; every other method is `private`. The action owns the write logic and returns the model (or `void`). Controllers must not contain write logic. |
-| **API Resource** (`toArray` envelope) | A `TicketTierResource`. Always include `id`; expose every other field via `whenHas`; expose relations via `whenLoaded`. No business logic beyond shaping output. |
-| **Spatie Query Builder** (index) | `QueryBuilder::for(...)` with `allowedFilters`, `allowedSorts`, `allowedIncludes`, a default `latest()` ordering, and pagination via a `per_page` query param with a sane default. |
-| **Controller conventions** | An `--api` resource controller (no `create`/`edit`). Call `$this->authorize(...)` first. Wrap every write in a `DB::beginTransaction()` / `try` / `catch` block — re-throw `ValidationException`, otherwise log the exception and throw a single generic, translated message. Return a consistent response envelope (see below). |
-| **Consistent response envelope** | Mutating endpoints return a uniform JSON envelope carrying a translated `message` and the resource payload — define one small wrapper Resource and use it everywhere, rather than ad-hoc `response()->json([...])`. |
-| **Authorization** | A `TicketTierPolicy` with `viewAny`/`view`/`create`/`update`/`delete` backed by `spatie/laravel-permission` (`$user->hasPermissionTo('...')`). State any permission-name assumption you make. |
-| **Routing** | `Route::apiResource(...)`, plus one non-resourceful route for the `publish` action. |
-| **Pest feature tests** | `tests/Feature` Pest tests with a `beforeEach` that bootstraps a user + permissions. Assert HTTP status, DB state, **and** response payload. |
-| **Localization** | Every user-facing string wrapped in `__()`. |
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[WebReinvent](https://webreinvent.com/)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
+- **[Jump24](https://jump24.co.uk)**
+- **[Redberry](https://redberry.international/laravel/)**
+- **[Active Logic](https://activelogic.com)**
+- **[byte5](https://byte5.de)**
+- **[OP.GG](https://op.gg)**
 
----
+## Contributing
 
-## 3. Scope — exactly what to implement
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-### 3.1 Migration + model
+## Code of Conduct
 
-Create `ticket_tiers`:
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-- `id`
-- `event_id` (FK)
-- `name` (string)
-- `price` (decimal) — money, stored in currency units
-- `quantity` (unsigned int) — total tickets available in this tier
-- `sales_channels` (json, **nullable**) — `NULL` = sold on all channels; a JSON array (e.g. `["web", "box_office"]`) = only those channels
-- `is_published` (boolean, default false)
-- `is_active` (boolean, default true)
-- timestamps + soft deletes
+## Security Vulnerabilities
 
-Index: composite `(event_id, is_active)`.
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-`TicketTier` model:
+## License
 
-- Cast `sales_channels` to array; cast `price` appropriately.
-- Query scopes: `forEvent($eventId)`, `active()`, `availableOnChannel($channel)` (matches `sales_channels IS NULL` **OR** the JSON array contains `$channel`).
-
-### 3.2 The CRUD endpoint
-
-An `apiResource` (`index`, `store`, `show`, `update`, `destroy`) **plus** a `publish` action route. Build it with the full convention stack from Section 2:
-
-- `index` via Query Builder — filterable by `event_id` and by `channel` (the latter via an `AllowedFilter::callback` using `availableOnChannel`), sortable by `name`/`price`/`created_at`, paginated.
-- `store` / `update` via Data classes + Action classes inside a DB transaction, returning the response envelope.
-- `destroy` is a soft delete.
-- `publish` flips `is_published` to `true` — single-action style.
-
-**Validation rules that matter (put them in the Data class):**
-
-- `name` must be unique **per event** (not globally — the same name may exist for two different events).
-- `event_id` must reference an existing event.
-- `price` ≥ 0; `quantity` ≥ 1.
-- `sales_channels` nullable; when present, an array whose values are all within a fixed allowed set.
-
-### 3.3 Tests (Pest, `tests/Feature`)
-
-Cover at minimum:
-
-1. `store` creates a tier — assert status, DB row, and response payload.
-2. `name` uniqueness is enforced per event, but the same name is allowed across two different events.
-3. `availableOnChannel` returns all-channel (`NULL`) + matching-channel tiers and excludes a tier restricted to a different channel.
-4. `publish` flips `is_published` to `true`.
-5. `destroy` soft-deletes the tier (row remains with `deleted_at`, and is excluded from the index).
-
----
-
-## 4. Ground rules
-
-- **Follow the conventions** — that's the whole exercise. We are reading how the Data class, Action, Resource, Query Builder, and policy hand off to each other.
-- **No frontend, no payments.** `sales_channels` and `price` are simple stored values here.
-- Keep `git` history clean and incremental — we read your commits.
-- If a requirement is ambiguous, make a reasonable assumption, **state it in your README**, and proceed.
-- Run the suite before submitting: `php artisan test`.
-
----
-
-## 5. How we score (100 pts)
-
-| Area | Pts | What earns the marks |
-| --- | --- | --- |
-| **Data classes & validation** | 25 | Correct `spatie/laravel-data` v4 usage; `Optional`; per-event unique rule done right; sensible `price`/`quantity`/`sales_channels` rules. |
-| **Action classes** | 15 | Single `execute`, private helpers, write logic lives here — not in the controller. |
-| **Controller & envelope** | 15 | `--api`, authorize-first, transactions + correct exception handling, consistent response envelope. |
-| **Query Builder index** | 15 | Proper `allowedFilters`/`allowedSorts`/`allowedIncludes`, pagination + `latest()`, the `availableOnChannel` filter. |
-| **Resource** | 10 | `id` + `whenHas` + `whenLoaded`, no leakage of internals. |
-| **Tests** | 15 | Meaningful assertions on status, DB, and payload; the five scenarios covered and passing. |
-| **Conventions & polish** | 5 | `__()` everywhere, sensible exception logging, routing placement, policy, clean commits, README with assumptions. |
-
-**Automatic red flags:** business logic in the controller instead of an Action; ad-hoc `response()->json` instead of a consistent envelope; missing transactions on writes; untranslated user-facing strings; global-instead-of-per-event uniqueness.
-
----
-
-## 6. Deliverable
-
-A git repo (or zip) containing your migration, model, Data classes, Action classes, controller, Resource, policy, routes, and tests — plus a short `README` listing your assumptions, how to run the tests, and a Postman collection to test the API. Good luck.
-
----
-
-## 7. Note
-
-We encourage use of AI coding agents like Claude and Codex — we believe that's the future of software development and we expect you to use them on this project. Nevertheless, we expect you to be able to defend the architectural choices you made and explain why specific lines of code or decisions came to be.
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
