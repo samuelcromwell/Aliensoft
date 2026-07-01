@@ -41,6 +41,24 @@ php artisan migrate
 php artisan test
 ```
 
+Verified result:
+
+```text
+Tests: 5 passed (33 assertions)
+```
+
+Code style was also verified with:
+
+```bash
+vendor/bin/pint --test
+```
+
+Verified result:
+
+```text
+{"tool":"pint","result":"passed"}
+```
+
 ## API
 
 Routes are registered in `routes/api.php`.
