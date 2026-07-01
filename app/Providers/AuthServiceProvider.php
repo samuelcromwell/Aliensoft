@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\TicketTier;
+use App\Policies\TicketTierPolicy;
 // use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -13,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        //
+        TicketTier::class => TicketTierPolicy::class,
     ];
 
     /**
